@@ -2,6 +2,7 @@ package ru.skypro.homework.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +11,8 @@ import ru.skypro.homework.dto.UpdateUser;
 import ru.skypro.homework.model.User;
 import ru.skypro.homework.service.ImageService;
 import ru.skypro.homework.service.UserService;
+
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -49,9 +52,10 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/me/image")
-    public ResponseEntity<?> updateUserImage(@RequestBody MultipartFile image) {
-        if (imageService.updateUserImage(image)) {
+    @PatchMapping(value = "/me/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> updateUserImage(@RequestBody MultipartFile image) throws IOException {
+        if (true) {
+            imageService.updateUserImage(image);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

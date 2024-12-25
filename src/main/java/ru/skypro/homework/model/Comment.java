@@ -2,10 +2,7 @@ package ru.skypro.homework.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -25,5 +22,9 @@ public class Comment {
     private int pk;
 
     private String text;
+
+    @ManyToOne
+    @JoinColumn(name = "ad_pk")
+    Ad ad;
 
 }

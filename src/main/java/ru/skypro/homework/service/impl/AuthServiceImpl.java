@@ -7,6 +7,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.dto.Register;
 import ru.skypro.homework.service.AuthService;
+import ru.skypro.homework.service.UserService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -14,10 +15,12 @@ public class AuthServiceImpl implements AuthService {
     private final UserDetailsManager manager;
     private final PasswordEncoder encoder;
 
-    public AuthServiceImpl(UserDetailsManager manager,
-                           PasswordEncoder passwordEncoder) {
+    private final UserService userService;
+
+    public AuthServiceImpl(UserDetailsManager manager, PasswordEncoder encoder, UserService userService) {
         this.manager = manager;
-        this.encoder = passwordEncoder;
+        this.encoder = encoder;
+        this.userService = userService;
     }
 
     @Override

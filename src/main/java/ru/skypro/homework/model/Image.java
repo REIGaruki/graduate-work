@@ -9,19 +9,13 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "ads")
-public class Ad {
-
-    private int author;
-
-    private String image;
+@Table(name = "images")
+public class Image {
 
     @Id
     @GeneratedValue
     private int pk;
 
-    private int price;
-
-    private String title;
+    private String path;
 
 }

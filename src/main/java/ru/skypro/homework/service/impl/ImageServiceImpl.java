@@ -40,6 +40,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public void updateAdImage(int ad, MultipartFile image) {
+        String path = uploadImage(image);
     }
 
     private String getExtensions(String fileName) {
@@ -56,8 +57,8 @@ public class ImageServiceImpl implements ImageService {
         } catch (IOException e) {
             logger.error("IO exception is caught");
         }
-        imageRepository.save(new Image());
-        return filePath.toString();
+        imageRepository.save(newImage);
+        return newImage.getPath();
     }
 
 }

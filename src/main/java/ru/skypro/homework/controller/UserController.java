@@ -54,8 +54,7 @@ public class UserController {
 
     @PatchMapping(value = "/me/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> updateUserImage(@RequestBody MultipartFile image) throws IOException {
-        if (true) {
-            imageService.updateUserImage(image);
+        if (imageService.updateUserImage(image)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

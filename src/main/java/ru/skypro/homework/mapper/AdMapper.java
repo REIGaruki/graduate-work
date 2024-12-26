@@ -13,9 +13,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AdMapper {
 
-    @Mapping(target = "count", expression = "java(ads.size())")
-    @Mapping(target = "results", source = "ads")
-    Ads mapToAds(List<Ad> ads);
+    default Ads mapToAds(List<Ad> ads) {
+        Ads result = new Ads();
+        result.setResults(ads);
+        result.setCount(ads.size());
+        return result;
+    }
 
     @Mapping(source = "ad.pk", target = "pk")
     @Mapping(source = "user.firstName", target = "authorFirstName")

@@ -91,10 +91,10 @@ public class AdController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else if (false) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        } else if (true) {
+        } else if (adService.changeImage(id, image)) {
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType("application/octet-stream"))
-                    .body(adService.changeImage(id, image));
+                    .body(image.getBytes());
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

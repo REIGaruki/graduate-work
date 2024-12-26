@@ -19,5 +19,5 @@ public interface AdService {
     void deleteAd(int id);
     Ad updateAd(int id, CreateOrUpdateAd adUpdate);
     Ads getAdsByUser();
-    byte[] changeImage(int id, MultipartFile image) throws IOException;
+    boolean changeImage(int id, MultipartFile image) throws IOException;
 }

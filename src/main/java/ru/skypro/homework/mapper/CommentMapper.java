@@ -11,9 +11,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
-    @Mapping(target = "count", expression = "java(comments.size())")
-    @Mapping(source = "comments", target = "results")
-    Comments mapToComments(List<Comment> comments);
+    default Comments mapToComments(List<Comment> comments) {
+        Comments result = new Comments();
+        result.setResults(comments);
+        result.setCount(comments.size());
+        return result;
+    }
 
     @Mapping(source = "text", target = "text")
     CreateOrUpdateComment mapToCreateOrUpdateComment(Comment comment);
